@@ -1,0 +1,2 @@
+# goleakalert
+Goroutine leak checker
