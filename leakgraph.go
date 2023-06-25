@@ -14,16 +14,13 @@ type LeakChecker struct {
 	done 					chan bool
 }
 
-func (l *LeakChecker) start() {
-	// ticker := time.NewTicker(1 * time.Millisecond)
- 	// defer ticker.Stop()
-
+func (l *LeakChecker) start(duration time.Duration) {
+	l.goroutineData = append(l.goroutineData, float64(runtime.NumGoroutine()))
 	for {
 		select {
-		case <- l.done:
+		case  <- l.done:
 			return
-		case <- time.After(1 * time.Millisecond):
-			fmt.Println("oi")
+		case <- time.After(duration):
 			l.goroutineData = append(l.goroutineData, float64(runtime.NumGoroutine()))
 		}
 	}
@@ -49,5 +46,5 @@ func (l *LeakChecker) stop() {
 		panic("This code may cause goroutine leak")
 	}
 
-	fmt.Println("======= LeakChecker End =======")
+	fmt.Println("=======  LeakChecker End  =======")
 }

@@ -41,5 +41,5 @@ func (l *LeakDetect) stop() {
 		panic("This code may cause goroutine leak")
 	}
 
-	fmt.Println("======= LeakDetect End =======")
+	fmt.Println("=======  LeakDetect End  =======")
 }
