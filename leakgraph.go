@@ -27,7 +27,7 @@ func (l *LeakChecker) start(duration time.Duration) {
 }
 
 func (l *LeakChecker) stop() {
-	fmt.Println("======= LeakChecker Start =======")
+	fmt.Println("=== RUN LeakChecker")
 	l.done <- true
 
 	// show goroutine graph
@@ -39,6 +39,7 @@ func (l *LeakChecker) stop() {
 			when there are no goroutine leak
 		*/
 		fmt.Println("No goroutine leaks")
+		fmt.Println("=== PASS: LeakChecker")
 	} else {
 		/*
 			when there are some goroutine leak
@@ -46,5 +47,4 @@ func (l *LeakChecker) stop() {
 		panic("This code may cause goroutine leak")
 	}
 
-	fmt.Println("=======  LeakChecker End  =======")
 }

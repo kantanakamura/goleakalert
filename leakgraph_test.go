@@ -9,9 +9,8 @@ import (
 )
 
 func Test3(t *testing.T) {
-	// leakChecker := LeakChecker{runtime.NumGoroutine(), []float64{1, 2, 4, 6, 10, 7, 4, 2, 1}, make(chan bool)}
 	leakChecker := LeakChecker{runtime.NumGoroutine(), []float64{}, make(chan bool)}
-	go leakChecker.start(100 * time.Microsecond)
+	go leakChecker.start(1 * time.Microsecond)
 	defer leakChecker.stop()
 
 	fmt.Println("main", goid())

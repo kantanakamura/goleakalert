@@ -27,13 +27,13 @@ type LeakDetect struct {
 }
 
 func (l *LeakDetect) stop() {
-	fmt.Println("======= LeakDetect Start =======")
-
+	fmt.Println("=== RUN LeakChecker")
 	if l.startNumberOfGoroutine == runtime.NumGoroutine() {
 		/*
 			when there are no goroutine leak
 		*/
 		fmt.Println("No goroutine leaks")
+		fmt.Println("=== PASS: LeakChecker")
 	} else {
 		/*
 			when there are some goroutine leak
@@ -41,5 +41,4 @@ func (l *LeakDetect) stop() {
 		panic("This code may cause goroutine leak")
 	}
 
-	fmt.Println("=======  LeakDetect End  =======")
 }
